@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Remplacer VOTRE-DOMAINE.com par l’adresse réelle du site
+Sitemap: https://junior-academy-seven.vercel.app/
