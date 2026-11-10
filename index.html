@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -209,6 +208,12 @@ html{scroll-padding-top:4.5rem}
 }
 .pgp[hidden]{display:none}
 .fab{border-radius:50%;animation:pulse 2.4s infinite}
+/* sélecteur de langue FR / EN */
+.lang{display:inline-flex;align-items:center;gap:2px;height:38px;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.lang button{height:100%;min-width:36px;padding:0 10px;border-radius:999px;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.06em;line-height:1;color:#C9C9D1;transition:background-color .3s,color .3s}
+.lang button:hover{color:#fff}
+.lang button[aria-pressed=true]{background:#FFE600;color:#07070A}
+@media(max-width:639px){.lang{height:34px}.lang button{min-width:32px;padding:0 8px}}
 </style>
 </head>
 <body>
@@ -230,6 +235,7 @@ html{scroll-padding-top:4.5rem}
       <li><a class="navl" href="#faq">Questions</a></li>
     </ul>
     <div class="flex items-center gap-2">
+      <div id="lang" class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" lang="fr" aria-pressed="true" title="Français">FR</button><button type="button" data-l="en" lang="en" aria-pressed="false" title="English">EN</button></div>
       <a href="#inscription" class="hidden lg:inline-flex btn bp h-11 pl-6 pr-5 text-[15px]">S’inscrire<svg class="ar" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       <button id="burger" class="lg:hidden w-11 h-11 rounded-full bg-white/10 grid place-items-center transition-colors hover:bg-white/20" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mm">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
@@ -294,8 +300,8 @@ html{scroll-padding-top:4.5rem}
 
 <!-- TECHNOS : bandes croisées -->
 <div class="bands relative py-10 sm:py-14 md:py-16 overflow-hidden" aria-label="Technologies et domaines enseignés">
-  <div class="bandb bg-ja-blue text-white"><div class="mq rev flex f font-black uppercase text-lg sm:text-2xl md:text-3xl whitespace-nowrap" data-b="Architecture|Base de données|SQL|MCD|Normalisation|MySQL|PostgreSQL"></div></div>
-  <div class="bandb mt-3 sm:mt-4 bg-ja-yellow text-black"><div class="mq flex f font-black uppercase text-lg sm:text-2xl md:text-3xl whitespace-nowrap" data-b="UI/UX Design|Développement web|HTML|CSS|JavaScript|Tailwind|Figma|Git"></div></div>
+  <div class="bandb bg-ja-blue text-white"><div class="mq rev flex f font-black uppercase text-lg sm:text-2xl md:text-3xl whitespace-nowrap" data-b="Architecture|Base de données|SQL|MCD|Normalisation|MySQL|PostgreSQL" data-b-en="Architecture|Database|SQL|Data modelling|Normalisation|MySQL|PostgreSQL"></div></div>
+  <div class="bandb mt-3 sm:mt-4 bg-ja-yellow text-black"><div class="mq flex f font-black uppercase text-lg sm:text-2xl md:text-3xl whitespace-nowrap" data-b="UI/UX Design|Développement web|HTML|CSS|JavaScript|Tailwind|Figma|Git" data-b-en="UI/UX Design|Web Development|HTML|CSS|JavaScript|Tailwind|Figma|Git"></div></div>
 </div>
 
 <!-- FORMATIONS -->
@@ -377,7 +383,7 @@ html{scroll-padding-top:4.5rem}
         <svg width="46" height="46" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2l14 18H6z" fill="#fff"/><path d="M6 24h28L20 38z" fill="#fff"/><path d="M14 20l6-6 6 6-6 6z" fill="#0F0F13"/></svg>
         <span class="f font-bold leading-[1.05] text-lg">Junior<br>Academy</span>
         <span class="w-px h-11 bg-white/40"></span>
-        <span class="f font-bold uppercase leading-[1.15] text-sm sm:text-base">Nouvelle session<br><span class="font-extrabold">de formation</span></span>
+        <span class="f font-bold uppercase leading-[1.15] text-sm sm:text-base" data-en='New training<br><span class="font-extrabold">session</span>'>Nouvelle session<br><span class="font-extrabold">de formation</span></span>
       </div>
       <p class="mt-6 sm:mt-10 text-sm font-semibold uppercase tracking-[.14em] text-[#A1A1AA]">Début de la session</p>
       <p class="mt-2 f font-black leading-none tracking-tight text-[clamp(2.1rem,9.5vw,5rem)]"><span class="dd text-ja-yellow">05</span> <span class="dm">Décembre 2026</span></p>
@@ -703,9 +709,9 @@ var F=[
   proj:'Concevoir la maquette interactive complète d’une application web ou mobile, de l’idée au prototype.',out:['Mener une recherche utilisateur simple','Construire un design system cohérent','Livrer un prototype prêt à développer'],
   viz:'<div class="relative w-[260px] rounded-xl bg-[#16161C] border border-white/10 p-3" aria-hidden="true"><div class="flex gap-1.5 mb-3"><i class="w-2 h-2 rounded-full bg-ja-pink"></i><i class="w-2 h-2 rounded-full bg-ja-yellow"></i><i class="w-2 h-2 rounded-full bg-ja-green"></i></div><div class="sk h-8 rounded-md" style="--i:0;--c:#0A3CFF"></div><div class="grid grid-cols-3 gap-2 mt-2"><div class="sk h-14 rounded-md" style="--i:1;--c:#FFE600"></div><div class="sk h-14 rounded-md" style="--i:2;--c:#FF1A8C"></div><div class="sk h-14 rounded-md" style="--i:3;--c:#4DFF1A"></div></div><div class="sk h-2.5 rounded mt-3 w-4/5" style="--i:4;--c:#fff"></div><div class="sk h-2.5 rounded mt-1.5 w-3/5" style="--i:5;--c:#fff"></div><div class="cur absolute right-3 bottom-3 flex items-start"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" stroke="#07070A" stroke-width="1.5"><path d="M4 3l6 17 2.5-7L20 10.5z"/></svg><span class="ml-1 mt-4 rounded bg-ja-blue text-white text-[10px] font-semibold px-1.5 py-0.5">Figma</span></div></div>'},
   {n:'03',t:'Développement web',s:'Développement web',a:'#4DFF1A',tx:'#4DFF1A',p:'14.999 fr',d:'Développez des applications web professionnelles, du front-end au back-end.',b:['HTML, CSS, JavaScript et Tailwind CSS','Sites responsives et accessibles','Back-end, API et base de données','Git et mise en ligne du projet'],
-  mods:['HTML sémantique et accessibilité','CSS moderne : Flexbox, Grid et responsive','Tailwind CSS et composants réutilisables','JavaScript : DOM, événements et appels API','Back-end et API : les fondamentaux','Git, GitHub etmise en ligne'],
+  mods:['HTML sémantique et accessibilité','CSS moderne : Flexbox, Grid et responsive','Tailwind CSS et composants réutilisables','JavaScript : DOM, événements et appels API','Back-end et API : les fondamentaux','Git, GitHub et mise en ligne'],
   proj:'Développer et publier un site web complet, connecté à une base de données.',out:['Construire un site responsive de A à Z','Relier le front-end à une API','Versionner et publier son projet'],
-  viz:'<div class="w-[270px] rounded-xl bg-[#0B0B0F] border border-white/10 p-4 font-mono text-[12.5px] leading-[1.9]" aria-hidden="true"><div class="flex gap-1.5 mb-3"><i class="w-2 h-2 rounded-full bg-ja-pink"></i><i class="w-2 h-2 rounded-full bg-ja-yellow"></i><i class="w-2 h-2 rounded-full bg-ja-green"></i></div><div class="code"><span class="l text-[#FF7AB8]" style="--n:28;--i:0"><h1 class="titre">Salut</h1></span><span class="l text-[#7C95FF]" style="--n:26;--i:1">.titre { color: #4DFF1A; }</span><span class="l text-[#FFE600]" style="--n:29;--i:2">btn.onclick = () => ouvrir();</span><span class="l text-ja-green" style="--n:15;--i:3">✔ Site en ligne</span></div></div>'}
+  viz:'<div class="w-[270px] rounded-xl bg-[#0B0B0F] border border-white/10 p-4 font-mono text-[12.5px] leading-[1.9]" aria-hidden="true"><div class="flex gap-1.5 mb-3"><i class="w-2 h-2 rounded-full bg-ja-pink"></i><i class="w-2 h-2 rounded-full bg-ja-yellow"></i><i class="w-2 h-2 rounded-full bg-ja-green"></i></div><div class="code">@@CODE@@</div></div>'}
 ];
 var WHY=[
  ['M3 7l9-4 9 4-9 4-9-4zM3 12l9 4 9-4M3 17l9 4 9-4','#FFE600','Projets concrets','Chaque notion est appliquée dans un projet que vous pouvez montrer.'],
@@ -726,24 +732,134 @@ var QA=[
  ['De quoi ai-je besoin pour commencer ?','Un ordinateur et une connexion internet suffisent pour démarrer. Précisez-nous votre situation sur WhatsApp, nous vous guiderons.'],
  ['Où et comment se déroule la formation ?','Demandez-nous les modalités de la session (lieu, format, horaires) sur WhatsApp : nous vous répondons avec les détails.']];
 
-// bandes technologies (boucle sans coupure)
-$$('[data-b]').forEach(function(m){var u='<span class="pr-4">'+m.dataset.b.split('|').join(' ✦ ')+' ✦</span>',x=u+u;m.innerHTML=x+x});
+
+/* ---------- langue : FR / EN ---------- */
+var L='fr',D=new Date(SESSION);
+try{var sv=localStorage.getItem('ja-lang');if(sv==='en'||sv==='fr')L=sv}catch(e){}
+try{var qp=new URLSearchParams(location.search).get('lang');if(qp==='en'||qp==='fr')L=qp}catch(e){}
+
+// Traductions anglaises du contenu généré par JavaScript (mêmes positions que les tableaux français ci-dessus)
+var FE=[
+ {t:'Database Architecture',s:'Database',p:'14,999 fr',d:'Design databases that are solid, fast and easy to evolve.',
+  b:['Data modelling: conceptual, logical and physical models','Normalisation and data integrity','SQL: queries, joins, indexes','MySQL, PostgreSQL and optimisation'],
+  mods:['Introduction to databases and DBMS','Data modelling: conceptual, logical and physical models','Normalisation: from 1NF to 3NF','SQL: SELECT, joins and aggregates','Indexes, views and transactions','Optimisation and security best practices'],
+  proj:'Design and build the complete database of an application (stock management, booking…).',
+  out:['Model a business requirement as conceptual and logical data models','Write reliable SQL queries','Optimise and secure a database']},
+ {t:'UI/UX Design',s:'UI/UX Design',p:'12,999 fr',d:'Create modern interfaces that users understand straight away.',
+  b:['User research and user journeys','Wireframes and mockups in Figma','Colours, typography, components','Interactive and responsive prototypes'],
+  mods:['UX fundamentals and user research','Personas, user journeys and information architecture','Wireframes and visual hierarchy','Design system: colours, typography, components','Interactive prototyping in Figma','User testing and handover to developers'],
+  proj:'Design the complete interactive mockup of a web or mobile application, from idea to prototype.',
+  out:['Run a simple user research study','Build a consistent design system','Deliver a development-ready prototype']},
+ {t:'Web Development',s:'Web Development',p:'14,999 fr',d:'Build professional web applications, from front end to back end.',
+  b:['HTML, CSS, JavaScript and Tailwind CSS','Responsive, accessible websites','Back end, APIs and databases','Git and taking your project live'],
+  mods:['Semantic HTML and accessibility','Modern CSS: Flexbox, Grid and responsive design','Tailwind CSS and reusable components','JavaScript: DOM, events and API calls','Back end and APIs: the fundamentals','Git, GitHub and going live'],
+  proj:'Develop and publish a complete website connected to a database.',
+  out:['Build a responsive website from start to finish','Connect the front end to an API','Use version control and publish your project']}
+];
+var WHY_EN=[
+ ['Real-world projects','Every concept is applied in a project you can showcase.'],
+ ['Practice first','Less theory, more guided exercises to build your independence.'],
+ ['Professional tools','Figma, Git, MySQL, Tailwind… the tools used by companies.'],
+ ['WhatsApp support','Ask your questions and keep moving forward without getting stuck.']];
+var AUD_EN=[
+ ['Students','Complement your studies with practical skills and a project to present.'],
+ ['Beginners','Start from scratch: we progress step by step, with no technical prerequisites.'],
+ ['Career changers','Gain digital skills to change careers.'],
+ ['Entrepreneurs','Build and manage your business’s website or app yourself.']];
+var JOBS_EN=['Database Administrator','UI/UX Designer','Front-end Developer','Full-stack Web Developer','Web Designer','Freelancer'];
+var QA_EN=[
+ ['Do I need to know how to code already?','No. The courses start from the basics and progress step by step. Message us on WhatsApp to find out which pathway suits you.'],
+ ['Can I take just one course?','Yes. Each course is independent, and you can combine them for a complete pathway.'],
+ ['How do I register?','Use the form on this page or message us on WhatsApp at +229 01 57 83 26 77.'],
+ ['What are the duration, schedule and pricing?','This information is shared with you directly on WhatsApp at +229 01 57 83 26 77.'],
+ ['What do I need to get started?','A computer and an internet connection are enough to get started. Tell us about your situation on WhatsApp and we will guide you.'],
+ ['Where and how does the course take place?','Ask us for the session details (location, format, schedule) on WhatsApp: we will reply with everything you need.']];
+var UI={
+ fr:{price:'Prix :',mod:'Module',fin:'Projet final',saurez:'À la fin, vous saurez',choose:'Choisir cette formation',course:'Formation',all:'Les trois formations'},
+ en:{price:'Price:',mod:'Module',fin:'Final project',saurez:'By the end, you will be able to',choose:'Choose this course',course:'Course',all:'All three courses'}};
+// Traductions du texte statique de la page (clé = texte français exact)
+var EN={"Formations": "Courses", "Programme": "Curriculum", "Parcours": "Pathway", "Pour qui ?": "Who it’s for", "Questions": "FAQ", "S’inscrire": "Register", "Nouveau": "New", "Nouvelle session": "New session", "Dès le": "Starting", "Maîtrisez l’architecture": "Master web architecture,", "du web, de la donnée": "from data", "à l’interface.": "to the interface.", "– Formation en développement web, UI/UX design et architecture de base de données": "– Training in web development, UI/UX design and database architecture", "BASE DE DONNÉES": "DATABASE", "DÉVELOPPEMENT WEB": "WEB DEVELOPMENT", "Apprenez à concevoir des": "Learn to design", "bases de données": "databases", ", des": ",", "interfaces modernes": "modern interfaces", "et des": "and", "applications web": "web applications", "professionnelles.": "to a professional standard.", "Je m’inscris": "Register now", "Découvrir les formations": "Explore the courses", "Prochaine session": "Next session", "Inscription WhatsApp": "WhatsApp registration", "3 formations": "3 courses", "JUNIOR ACADEMY ✦ NOUVELLE SESSION ✦": "JUNIOR ACADEMY ✦ NEW SESSION ✦", "Nos formations": "Our courses", "Trois compétences, un seul parcours.": "Three skills, one pathway.", "Chaque formation s’appuie sur des projets concrets. Suivez-en une, ou enchaînez les trois pour maîtriser tout le cycle d’une application.": "Every course is built around real projects. Take one, or combine all three to master the entire lifecycle of an application.", "Programme détaillé": "Detailed curriculum", "Ce que vous allez apprendre, module par module.": "What you will learn, module by module.", "De l’idée à l’application en ligne.": "From idea to a live application.", "Structurer les données": "Structure the data", "Vous modélisez et créez la base fiable de votre projet.": "You model and build your project’s reliable database.", "Dessiner l’interface": "Design the interface", "Vous concevez des écrans clairs, du wireframe au prototype.": "You design clear screens, from wireframe to prototype.", "Développer et publier": "Build and publish", "Vous codez l’application et la mettez en ligne.": "You code the application and put it online.", "Pourquoi Junior Academy": "Why Junior Academy", "Apprendre en construisant, pas en regardant.": "Learn by building, not by watching.", "Notre approche est simple : peu de théorie, beaucoup de pratique, et un projet à montrer à la fin de chaque formation.": "Our approach is simple: little theory, plenty of practice, and a project to show at the end of every course.", "Rejoindre la session": "Join the session", "Une formation pour chaque point de départ.": "A course for every starting point.", "Les métiers que vous pourrez viser": "Careers you can aim for", "Début de la session": "Session start date", "Base de données · UI/UX Design · Développement web": "Database · UI/UX Design · Web Development", "jours": "days", "heures": "hours", "secondes": "seconds", "Inscription": "Registration", "Réservez votre place": "Reserve your spot", "Inscription et renseignements via WhatsApp :": "Registration and information via WhatsApp:", "Nos Tarifs": "Our Pricing", "Vos objectifs, nos formations": "Your goals, our courses", "Que vous souhaitiez apprendre un nouveau métier, renforcer vos compétences ou relever de nouveaux défis, nos formations vous accompagnent à chaque étape pour transformer vos ambitions en résultats concrets.": "Whether you want to learn a new trade, strengthen your skills or take on new challenges, our courses support you every step of the way, turning your ambitions into concrete results.", "Architecture de base de données": "Database Architecture", "Concevez des bases solides, rapides et faciles à faire évoluer.": "Design databases that are solid, fast and easy to evolve.", "14.999": "14,999", "12.999": "12,999", "Choisir cette formation": "Choose this course", "Ce que vous apprendrez": "What you will learn", "Modélisation : MCD, MLD, MPD": "Data modelling: conceptual, logical and physical models", "SQL : requêtes, jointures, index": "SQL: queries, joins, indexes", "MySQL, PostgreSQL et optimisation": "MySQL, PostgreSQL and optimisation", "Normalisation et intégrité": "Normalisation and data integrity", "Populaire": "Popular", "Créez des interfaces modernes que les utilisateurs comprennent tout de suite.": "Create modern interfaces that users understand straight away.", "Recherche utilisateur et parcours": "User research and user journeys", "Wireframes et maquettes Figma": "Wireframes and Figma mockups", "Prototypes interactifs": "Interactive prototypes", "Design system complet": "Complete design system", "Tests utilisateurs": "User testing", "Développement web": "Web Development", "Développez des applications web professionnelles, du front-end au back-end.": "Build professional web applications, from front end to back end.", "Tailwind CSS et responsive": "Tailwind CSS and responsive design", "Back-end et API": "Back end and APIs", "Git et mise en ligne": "Git and going live", "Vous pouvez suivre une seule formation ou les trois pour un parcours complet": "You can take a single course or all three for a complete pathway", "Réservez votre place pour la nouvelle session.": "Reserve your spot for the new session.", "Remplissez le formulaire : votre message s’ouvre dans WhatsApp, prêt à être envoyé. Vous préférez écrire vous-même ?": "Fill in the form: your message opens in WhatsApp, ready to send. Prefer to write to us yourself?", "Durée, horaires et tarifs : demandez-nous directement sur WhatsApp.": "Duration, schedule and pricing: ask us directly on WhatsApp.", "Votre nom": "Your name", "Entrez votre nom pour continuer.": "Enter your name to continue.", "Formation choisie": "Selected course", "(facultatif)": "(optional)", "Envoyer sur WhatsApp": "Send on WhatsApp", "Les questions fréquentes.": "Frequently asked questions.", "Une autre question ? Écrivez-nous sur WhatsApp.": "Another question? Message us on WhatsApp.", "Formations en architecture de base de données, UI/UX design et développement web.": "Training in database architecture, UI/UX design and web development.", "Base de données": "Database", "Junior Academy. Tous droits réservés.": "Junior Academy. All rights reserved.", "Ouverture de WhatsApp…": "Opening WhatsApp…", "Navigation principale": "Main navigation", "Junior Academy, accueil": "Junior Academy, home", "Ouvrir le menu": "Open menu", "Illustration d’une étudiante qui code sur une tablette, avec une base de données et un graphique": "Illustration of a student coding on a tablet, with a database and a chart", "Technologies et domaines enseignés": "Technologies and subjects taught", "Formation précédente": "Previous course", "Choisir une formation": "Choose a course", "Formation suivante": "Next course", "Programmes": "Curriculum by course", "Ex. Awa Kouassi": "E.g. Awa Kouassi", "Une question, un besoin particulier ?": "A question or a specific need?", "Pied de page": "Footer", "Écrire sur WhatsApp": "Message us on WhatsApp"};
+var MT=[['meta[name="description"]','content','Junior Academy: hands-on training in web development, UI/UX design and database architecture. New session now open, register via WhatsApp.'],
+ ['meta[property="og:title"]','content','Junior Academy – Web Development, UI/UX Design & Database Training'],
+ ['meta[property="og:description"]','content','Learn to design high-performance databases, create modern interfaces and develop professional web applications.'],
+ ['meta[name="twitter:title"]','content','Junior Academy – Web Development, UI/UX Design & Database Training'],
+ ['meta[name="twitter:description"]','content','Training in web development, UI/UX design and databases. Register via WhatsApp.'],
+ ['meta[property="og:locale"]','content','en_GB']].map(function(r){var el=$(r[0]);return {el:el,a:r[1],en:r[2],fr:el?el.getAttribute(r[1]):''}});
+var TT={fr:document.title,en:'Junior Academy – Web Development, UI/UX Design & Database Training'};
+
+// repérage des textes statiques à traduire (une seule fois)
+var norm=function(v){return v.replace(/\s+/g,' ').trim()},has=function(k){return Object.prototype.hasOwnProperty.call(EN,k)};
+var SKIP='#cards,#tabs,#pg,#why,#aud,#jobs,#faqlist,#fo,#dots,[data-b],[data-en],.dd,.dm,.ds,script,style';
+var TXT=[],ATT=[],OVR=[];
+(function(){
+ var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n;
+ while((n=w.nextNode())){var v=n.nodeValue;if(!v.trim())continue;var p=n.parentNode;if(p&&p.closest&&p.closest(SKIP))continue;var k=norm(v);if(has(k))TXT.push({n:n,fr:v,k:k})}
+ $$('[aria-label],[placeholder],[alt]').forEach(function(el){
+  if(el.parentElement&&el.parentElement.closest('#cards,#tabs,#pg,#why,#aud,#jobs,#faqlist,#fo,#dots'))return;
+  ['aria-label','placeholder','alt'].forEach(function(a){var v=el.getAttribute(a);if(v&&has(norm(v)))ATT.push({el:el,a:a,fr:v,k:norm(v)})})});
+ $$('[data-en]').forEach(function(el){OVR.push({el:el,fr:el.innerHTML,en:el.getAttribute('data-en')})});
+})();
+function applyStatic(){
+ var E=L==='en';
+ TXT.forEach(function(o){var m=o.fr.match(/^(\s*)[\s\S]*?(\s*)$/);o.n.nodeValue=E?m[1]+EN[o.k]+m[2]:o.fr});
+ ATT.forEach(function(o){o.el.setAttribute(o.a,E?EN[o.k]:o.fr)});
+ OVR.forEach(function(o){o.el.innerHTML=E?o.en:o.fr});
+ var st=$('svg text[letter-spacing]');if(st)st.setAttribute('letter-spacing',E?'2.4':'1.3');
+}
+function applyMeta(){document.title=TT[L];MT.forEach(function(m){if(m.el)m.el.setAttribute(m.a,L==='en'?m.en:m.fr)})}
+function setDates(){
+ var loc=L==='en'?'en-GB':'fr-FR',mo=D.toLocaleDateString(loc,{month:'long',year:'numeric'});
+ $$('.dd').forEach(function(x){x.textContent=String(D.getDate()).padStart(2,'0')});
+ $$('.dm').forEach(function(x){x.textContent=mo.charAt(0).toUpperCase()+mo.slice(1)});
+ $$('.ds').forEach(function(x){x.textContent=D.toLocaleDateString(loc,{day:'numeric',month:'long',year:'numeric'})});
+}
+function fx(i){var f=F[i];if(L!=='en')return f;var o={},k;for(k in f)o[k]=f[k];for(k in FE[i])o[k]=FE[i][k];return o}
+function codeHtml(){var c=L==='en'?['Hello','open','Site is live',27,14]:['Salut','ouvrir','Site en ligne',29,15];
+ return '<span class="l text-[#FF7AB8]" style="--n:28;--i:0">&lt;h1 class="titre"&gt;'+c[0]+'&lt;/h1&gt;</span><span class="l text-[#7C95FF]" style="--n:26;--i:1">.titre { color: #4DFF1A; }</span><span class="l text-[#FFE600]" style="--n:'+c[3]+';--i:2">btn.onclick = () =&gt; '+c[1]+'();</span><span class="l text-ja-green" style="--n:'+c[4]+';--i:3">✔ '+c[2]+'</span>'}
+function waMsg(name,ci,extra){
+ var m=L==='en'
+  ?'Hello Junior Academy, my name is '+name+'. I would like to register for '+(ci==='3'?'all three courses':'the course: '+fx(+ci).t)+'.'
+  :'Bonjour Junior Academy, je m’appelle '+name+'. Je souhaite m’inscrire à la formation : '+(ci==='3'?UI.fr.all:F[+ci].t)+'.';
+ return m+(extra?'\n'+extra:'')}
+function buildOpts(){var s=$('#fo'),v=/^[0-3]$/.test(s.value)?s.value:'0';
+ s.innerHTML=F.map(function(_,i){return '<option value="'+i+'">'+fx(i).t+'</option>'}).join('')+'<option value="3">'+UI[L].all+'</option>';s.value=v}
+
+var curTab=0,curQ=-1;
+function buildDyn(first){
+ var E=L==='en',U=UI[L],
+  W=WHY.map(function(w,i){return E?[w[0],w[1],WHY_EN[i][0],WHY_EN[i][1]]:w}),
+  A=AUD.map(function(w,i){return E?[w[0],w[1],AUD_EN[i][0],AUD_EN[i][1]]:w}),
+  J=E?JOBS_EN:JOBS,Q=E?QA_EN:QA;
+$$('[data-b]').forEach(function(m){var u='<span class="pr-4">'+(E&&m.dataset.bEn?m.dataset.bEn:m.dataset.b).split('|').join(' ✦ ')+' ✦</span>',x=u+u;m.innerHTML=x+x});
 
 // cartes formations
-$('#cards').innerHTML=F.map(function(f,i){return '<article class="card flex flex-col" style="--a:'+f.a+'"><div class="viz">'+f.viz+'</div><div class="p-5 sm:p-7 flex flex-col flex-1 relative z-[2]"><div class="flex items-start gap-3 mb-4"><span class="f font-bold text-sm" style="color:'+f.tx+'">'+f.n+'</span><h3 class="mt-1.5 sm:mt-2 text-[22px] sm:text-[26px] font-extrabold leading-tight">'+f.t+'</h3></div><p class="mt-3 text-[#A1A1AA]">'+f.d+'</p><div class="mt-4 flex items-center gap-2 text-sm text-[#A1A1AA]"><span style="color:'+f.tx+'" class="font-medium">Prix :</span> <span style="color:'+f.a+'" class="font-bold">'+f.p+'</span></div><ul class="mt-4 sm:mt-6 space-y-2.5 sm:space-y-3 text-[14px] sm:text-[15px] font-medium flex-1">'+f.b.map(function(x){return '<li class="flex gap-3">'+CK(f.tx)+x+'</li>'}).join('')+'</ul><a href="#inscription" data-f="'+f.t+'" class="choose btn bp h-11 sm:h-12 mt-5 sm:mt-8 w-full">Choisir cette formation'+AR+'</a></div></article>'}).join('');
+$('#cards').innerHTML=F.map(function(_,i){var f=fx(i);return '<article class="card flex flex-col" style="--a:'+f.a+'"><div class="viz">'+f.viz.replace('@@CODE@@',codeHtml())+'</div><div class="p-5 sm:p-7 flex flex-col flex-1 relative z-[2]"><div class="flex items-start gap-3 mb-4"><span class="f font-bold text-sm" style="color:'+f.tx+'">'+f.n+'</span><h3 class="mt-1.5 sm:mt-2 text-[22px] sm:text-[26px] font-extrabold leading-tight">'+f.t+'</h3></div><p class="mt-3 text-[#A1A1AA]">'+f.d+'</p><div class="mt-4 flex items-center gap-2 text-sm text-[#A1A1AA]"><span style="color:'+f.tx+'" class="font-medium">'+U.price+'</span> <span style="color:'+f.a+'" class="font-bold">'+f.p+'</span></div><ul class="mt-4 sm:mt-6 space-y-2.5 sm:space-y-3 text-[14px] sm:text-[15px] font-medium flex-1">'+f.b.map(function(x){return '<li class="flex gap-3">'+CK(f.tx)+x+'</li>'}).join('')+'</ul><a href="#inscription" data-f="'+i+'" class="choose btn bp h-11 sm:h-12 mt-5 sm:mt-8 w-full">'+U.choose+AR+'</a></div></article>'}).join('');
 
 // programme (onglets)
-$('#tabs').innerHTML=F.map(function(f,i){return '<button class="tab2 shrink-0 whitespace-nowrap rounded-full px-4 sm:px-6 h-10 sm:h-12 text-sm sm:text-base font-semibold" id="t'+i+'" role="tab" aria-controls="pg'+i+'" aria-selected="'+(i===0)+'" data-i="'+i+'" style="--a:'+f.a+'">'+f.s+'</button>'}).join('');
-function panel(f,i){return '<div class="pgp grid lg:grid-cols-[1.5fr_1fr] gap-4 sm:gap-6" id="pg'+i+'" role="tabpanel" aria-labelledby="t'+i+'"'+(i?' hidden':'')+'><ol class="grid sm:grid-cols-2 gap-2.5 sm:gap-4">'+f.mods.map(function(m,k){return '<li class="mod rounded-2xl border border-white/10 bg-ja-s1 p-3.5 sm:p-5 flex gap-3 sm:gap-4" style="--i:'+k+'"><span class="f font-extrabold text-sm w-9 h-9 shrink-0 rounded-xl grid place-items-center text-black" style="background:'+f.a+'">'+(k+1)+'</span><span class="font-medium leading-snug"><span class="block text-xs text-[#A1A1AA] mb-1">Module '+(k+1)+'</span>'+m+'</span></li>'}).join('')+'</ol><aside class="rounded-3xl border p-5 sm:p-7 flex flex-col" style="border-color:'+f.a+'55;background:color-mix(in srgb,'+f.a+' 7%,#0F0F13)"><p class="text-sm font-semibold uppercase tracking-[.14em]" style="color:'+f.tx+'">Projet final</p><p class="mt-2 sm:mt-3 text-base sm:text-lg font-medium leading-snug">'+f.proj+'</p><p class="mt-7 text-sm font-semibold uppercase tracking-[.14em] text-[#A1A1AA]">À la fin, vous saurez</p><ul class="mt-4 space-y-3 text-[15px] font-medium flex-1">'+f.out.map(function(x){return '<li class="flex gap-3">'+CK(f.tx)+x+'</li>'}).join('')+'</ul><a href="#inscription" data-f="'+f.t+'" class="choose btn bp h-12 mt-8 w-full">Choisir cette formation'+AR+'</a></aside></div>'}
+$('#tabs').innerHTML=F.map(function(_,i){var f=fx(i);return '<button class="tab2 shrink-0 whitespace-nowrap rounded-full px-4 sm:px-6 h-10 sm:h-12 text-sm sm:text-base font-semibold" id="t'+i+'" role="tab" aria-controls="pg'+i+'" aria-selected="'+(i===curTab)+'" data-i="'+i+'" style="--a:'+f.a+'">'+f.s+'</button>'}).join('');
+function panel(_,i){var f=fx(i);return '<div class="pgp grid lg:grid-cols-[1.5fr_1fr] gap-4 sm:gap-6" id="pg'+i+'" role="tabpanel" aria-labelledby="t'+i+'"'+(i!==curTab?' hidden':'')+'><ol class="grid sm:grid-cols-2 gap-2.5 sm:gap-4">'+f.mods.map(function(m,k){return '<li class="mod rounded-2xl border border-white/10 bg-ja-s1 p-3.5 sm:p-5 flex gap-3 sm:gap-4" style="--i:'+k+'"><span class="f font-extrabold text-sm w-9 h-9 shrink-0 rounded-xl grid place-items-center text-black" style="background:'+f.a+'">'+(k+1)+'</span><span class="font-medium leading-snug"><span class="block text-xs text-[#A1A1AA] mb-1">'+U.mod+' '+(k+1)+'</span>'+m+'</span></li>'}).join('')+'</ol><aside class="rounded-3xl border p-5 sm:p-7 flex flex-col" style="border-color:'+f.a+'55;background:color-mix(in srgb,'+f.a+' 7%,#0F0F13)"><p class="text-sm font-semibold uppercase tracking-[.14em]" style="color:'+f.tx+'">'+U.fin+'</p><p class="mt-2 sm:mt-3 text-base sm:text-lg font-medium leading-snug">'+f.proj+'</p><p class="mt-7 text-sm font-semibold uppercase tracking-[.14em] text-[#A1A1AA]">'+U.saurez+'</p><ul class="mt-4 space-y-3 text-[15px] font-medium flex-1">'+f.out.map(function(x){return '<li class="flex gap-3">'+CK(f.tx)+x+'</li>'}).join('')+'</ul><a href="#inscription" data-f="'+i+'" class="choose btn bp h-12 mt-8 w-full">'+U.choose+AR+'</a></aside></div>'}
 $('#pg').innerHTML=F.map(panel).join('');
-$$('.tab2').forEach(function(b){b.onclick=function(){var i=+b.dataset.i;$$('.tab2').forEach(function(x){x.setAttribute('aria-selected',x===b)});$$('.pgp').forEach(function(x,k){x.hidden=k!==i})}});
+$$('.tab2').forEach(function(b){b.onclick=function(){var i=+b.dataset.i;curTab=i;$$('.tab2').forEach(function(x){x.setAttribute('aria-selected',x===b)});$$('.pgp').forEach(function(x,k){x.hidden=k!==i})}});
 
 // pourquoi / public / métiers / faq
-$('#why').innerHTML=WHY.map(function(w,i){return '<div class="card rv p-4 sm:p-7" style="--a:'+w[1]+';--d:'+i+'"><span class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl grid place-items-center" style="background:color-mix(in srgb,'+w[1]+' 16%,transparent)">'+IC(w[0],w[1])+'</span><h3 class="mt-3 sm:mt-5 text-[15px] sm:text-xl font-extrabold leading-snug">'+w[2]+'</h3><p class="mt-1.5 sm:mt-2 text-[13px] sm:text-base leading-snug sm:leading-normal text-[#A1A1AA]">'+w[3]+'</p></div>'}).join('');
-$('#aud').innerHTML=AUD.map(function(w,i){return '<div class="card rv p-4 sm:p-7" style="--a:'+w[1]+';--d:'+i+'"><span class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl grid place-items-center" style="background:color-mix(in srgb,'+w[1]+' 16%,transparent)">'+IC(w[0],w[1])+'</span><h3 class="mt-3 sm:mt-5 text-[15px] sm:text-xl font-extrabold leading-snug">'+w[2]+'</h3><p class="mt-1.5 sm:mt-2 text-[13px] sm:text-base leading-snug sm:leading-normal text-[#A1A1AA]">'+w[3]+'</p></div>'}).join('');
-$('#jobs').innerHTML=JOBS.map(function(j,i){return '<li class="rv job rounded-full border border-white/15 px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold" style="--d:'+i+';--a:'+['#FFE600','#5B7BFF','#4DFF1A','#FF1A8C'][i%4]+'">'+j+'</li>'}).join('');
-$('#faqlist').innerHTML=QA.map(function(q){return '<div><button class="q w-full flex items-center justify-between gap-6 py-4 sm:py-6 text-left font-semibold text-base sm:text-lg" aria-expanded="false">'+q[0]+'<span class="pm w-9 h-9 shrink-0 rounded-full border border-white/20 grid place-items-center text-xl leading-none" aria-hidden="true">+</span></button><div class="ac"><div><p class="pb-4 sm:pb-6 text-[#A1A1AA] text-[15px] sm:text-[17px]">'+q[1]+'</p></div></div></div>'}).join('');
-$$('.q').forEach(function(b){b.onclick=function(){var o=b.getAttribute('aria-expanded')==='true';$$('.q').forEach(function(x){x.setAttribute('aria-expanded','false')});b.setAttribute('aria-expanded',!o)}});
+$('#why').innerHTML=W.map(function(w,i){return '<div class="card rv p-4 sm:p-7" style="--a:'+w[1]+';--d:'+i+'"><span class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl grid place-items-center" style="background:color-mix(in srgb,'+w[1]+' 16%,transparent)">'+IC(w[0],w[1])+'</span><h3 class="mt-3 sm:mt-5 text-[15px] sm:text-xl font-extrabold leading-snug">'+w[2]+'</h3><p class="mt-1.5 sm:mt-2 text-[13px] sm:text-base leading-snug sm:leading-normal text-[#A1A1AA]">'+w[3]+'</p></div>'}).join('');
+$('#aud').innerHTML=A.map(function(w,i){return '<div class="card rv p-4 sm:p-7" style="--a:'+w[1]+';--d:'+i+'"><span class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl grid place-items-center" style="background:color-mix(in srgb,'+w[1]+' 16%,transparent)">'+IC(w[0],w[1])+'</span><h3 class="mt-3 sm:mt-5 text-[15px] sm:text-xl font-extrabold leading-snug">'+w[2]+'</h3><p class="mt-1.5 sm:mt-2 text-[13px] sm:text-base leading-snug sm:leading-normal text-[#A1A1AA]">'+w[3]+'</p></div>'}).join('');
+$('#jobs').innerHTML=J.map(function(j,i){return '<li class="rv job rounded-full border border-white/15 px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold" style="--d:'+i+';--a:'+['#FFE600','#5B7BFF','#4DFF1A','#FF1A8C'][i%4]+'">'+j+'</li>'}).join('');
+$('#faqlist').innerHTML=Q.map(function(q,qi){return '<div><button class="q w-full flex items-center justify-between gap-6 py-4 sm:py-6 text-left font-semibold text-base sm:text-lg" aria-expanded="'+(qi===curQ)+'">'+q[0]+'<span class="pm w-9 h-9 shrink-0 rounded-full border border-white/20 grid place-items-center text-xl leading-none" aria-hidden="true">+</span></button><div class="ac"><div><p class="pb-4 sm:pb-6 text-[#A1A1AA] text-[15px] sm:text-[17px]">'+q[1]+'</p></div></div></div>'}).join('');
+$$('.q').forEach(function(b,qi){b.onclick=function(){var o=b.getAttribute('aria-expanded')==='true';curQ=o?-1:qi;$$('.q').forEach(function(x){x.setAttribute('aria-expanded','false')});b.setAttribute('aria-expanded',!o)}});
+
+
+ if(!first)$$('#why .rv,#aud .rv,#jobs .rv').forEach(function(el){el.classList.add('in')});
+}
+function applyAll(first){
+ document.documentElement.lang=L;
+ applyStatic();applyMeta();setDates();buildDyn(first);buildOpts();
+ $$('#lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===L)});
+ if(window.relabelDots)window.relabelDots();
+}
+$$('#lang button').forEach(function(b){b.addEventListener('click',function(){
+ if(b.dataset.l===L)return;L=b.dataset.l;try{localStorage.setItem('ja-lang',L)}catch(e){}applyAll(false)})});
+applyAll(true);
 
 /* ---------- comportements ---------- */
 var bg=$('#burger'),mm=$('#mm');
@@ -761,11 +877,7 @@ if(!calm&&fine){hero.addEventListener('mousemove',function(e){var r=hero.getBoun
 $$('.par').forEach(function(p){p.style.setProperty('--mx',x.toFixed(3));p.style.setProperty('--my',y.toFixed(3))})});
 document.addEventListener('mousemove',function(e){var c=e.target.closest&&e.target.closest('.card');if(c){var r=c.getBoundingClientRect();c.style.setProperty('--x',(e.clientX-r.left)+'px');c.style.setProperty('--y',(e.clientY-r.top)+'px')}})}
 document.addEventListener('click',function(e){var a=e.target.closest('.choose');if(a)$('#fo').value=a.dataset.f});
-// date + compte à rebours
-var D=new Date(SESSION),mo=D.toLocaleDateString('fr-FR',{month:'long',year:'numeric'});
-$$('.dd').forEach(function(x){x.textContent=String(D.getDate()).padStart(2,'0')});
-$$('.dm').forEach(function(x){x.textContent=mo.charAt(0).toUpperCase()+mo.slice(1)});
-$$('.ds').forEach(function(x){x.textContent=D.toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'})});
+// compte à rebours
 function cd(){var d=D-new Date(),c=$('#cd');if(d<=0){c.classList.add('hidden');c.classList.remove('flex');return false}
 c.classList.remove('hidden');c.classList.add('flex');var s=Math.floor(d/1e3);
 $('#c0').textContent=Math.floor(s/86400);$('#c1').textContent=Math.floor(s%86400/3600);$('#c2').textContent=Math.floor(s%3600/60);$('#c3').textContent=s%60;return true}
@@ -774,14 +886,16 @@ if(cd())setInterval(cd,1000);
 var n=$('#nom');n.addEventListener('input',function(){n.classList.remove('bad');$('#err').classList.add('hidden')});
 $('#form').addEventListener('submit',function(e){e.preventDefault();
 if(!n.value.trim()){n.classList.add('bad');$('#err').classList.remove('hidden');n.focus();return}
-var m=$('#msg').value.trim(),t='Bonjour Junior Academy, je m’appelle '+n.value.trim()+'. Je souhaite m’inscrire à la formation : '+$('#fo').value+'.'+(m?'\n'+m:'');
+var m=$('#msg').value.trim(),t=waMsg(n.value.trim(),$('#fo').value,m);
 var T=$('#toast');T.classList.add('on');setTimeout(function(){T.classList.remove('on')},2800);
 window.open('https://wa.me/2290157832677?text='+encodeURIComponent(t),'_blank','noopener')});
 $('#yr').textContent=new Date().getFullYear();
 // carrousel des formations : une formation à la fois, dans un cadre plein espace
 (function(){var c=$('#cards'),dw=$('#dots'),prev=$('#cprev'),next=$('#cnext'),n=c.children.length,cur=0,hold=false,idle;
-dw.innerHTML=F.map(function(f,i){return '<button class="dot'+(i===0?' on':'')+'" aria-label="Formation '+(i+1)+' : '+f.s+'" data-i="'+i+'"></button>'}).join('');
+dw.innerHTML=F.map(function(f,i){return '<button class="dot'+(i===0?' on':'')+'" data-i="'+i+'"></button>'}).join('');
 var dots=$$('.dot');
+function lab(){dots.forEach(function(d,i){d.setAttribute('aria-label',UI[L].course+' '+(i+1)+(L==='en'?': ':' : ')+fx(i).s)})}
+window.relabelDots=lab;lab();
 function paint(){c.style.transform='translateX(-'+(cur*100)+'%)';dots.forEach(function(d,i){d.classList.toggle('on',i===cur);d.setAttribute('aria-current',i===cur?'true':'false')})}
 function go(i){cur=(i+n)%n;paint();pause()}
 function pause(){hold=true;clearTimeout(idle);idle=setTimeout(function(){hold=false},7000)}
