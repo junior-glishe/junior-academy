@@ -34,6 +34,16 @@ textarea.fld{height:auto;padding:14px 16px}
 .fld:focus{outline:none;border-color:#FFE600;box-shadow:0 0 0 4px rgba(255,230,0,.15)}
 .fld.bad{border-color:#FF1A8C;box-shadow:0 0 0 4px rgba(255,26,140,.15)}
 select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.telw{display:flex;gap:8px;position:relative}
+.cc{display:flex;align-items:center;gap:8px;height:52px;padding:0 12px;border-radius:14px;background:#0B0B0F;border:1px solid rgba(255,255,255,.14);color:#fff;flex:none;transition:border-color .25s,box-shadow .25s}
+.cc:hover{border-color:rgba(255,255,255,.3)}
+.cc[aria-expanded=true]{border-color:#FFE600;box-shadow:0 0 0 4px rgba(255,230,0,.15)}
+.cc svg{transition:transform .3s var(--e)}.cc[aria-expanded=true] svg{transform:rotate(180deg)}
+.flag{width:24px;height:18px;border-radius:3px;object-fit:cover;background:#16161C;flex:none}
+.ccl{position:absolute;left:0;top:58px;z-index:30;width:300px;max-width:calc(100vw - 40px);padding:8px;border-radius:18px;background:#16161C;border:1px solid rgba(255,255,255,.14);box-shadow:0 24px 60px -16px rgba(0,0,0,.9)}
+.ccl[hidden]{display:none}
+.ccl ul{max-height:240px;overflow-y:auto;margin-top:6px}
+.telw:has(.bad)+.err{display:block}
 .err{display:none;margin-top:.5rem;font-size:.875rem;font-weight:500;color:#FF5CAA}
 .bad+.err{display:block}
 /* cartes de formation */
@@ -53,6 +63,11 @@ select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 .n1{left:-14px}.n2{right:-14px}
 .pop{animation:pop .5s var(--e)}
 @keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.lang{display:inline-flex;align-items:center;gap:2px;height:38px;padding:3px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+.lang button{height:100%;min-width:36px;padding:0 10px;border-radius:999px;font-family:Poppins,system-ui,sans-serif;font-weight:700;font-size:12px;letter-spacing:.06em;line-height:1;color:#C9C9D1;transition:background-color .3s,color .3s}
+.lang button:hover{color:#fff}
+.lang button[aria-pressed=true]{background:#FFE600;color:#07070A}
+@media(max-width:639px){.lang{height:34px}.lang button{min-width:32px;padding:0 8px}}
 .in1{animation:pop .9s var(--e) both}.in2{animation:pop .9s var(--e) .12s both}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 </style>
@@ -65,8 +80,11 @@ select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
     <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2l14 18H6z" fill="#fff"/><path d="M6 24h28L20 38z" fill="#fff"/><path d="M14 20l6-6 6 6-6 6z" fill="#07070A"/></svg>
     <span class="f font-bold leading-[1.05] text-[16px]">Junior<br>Academy</span>
   </a>
-  <a href="index.html" class="text-sm font-medium text-[#C9C9D1] hover:text-white transition-colors inline-flex items-center gap-2">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Retour au site</a>
+  <div class="flex items-center gap-2 sm:gap-3">
+    <div id="lang" class="lang" role="group" aria-label="Langue / Language"><button type="button" data-l="fr" lang="fr" aria-pressed="true" title="Français">FR</button><button type="button" data-l="en" lang="en" aria-pressed="false" title="English">EN</button></div>
+    <a href="index.html" aria-label="Retour au site" class="text-sm font-medium text-[#C9C9D1] hover:text-white transition-colors inline-flex items-center gap-2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg><span class="hidden sm:inline">Retour au site</span></a>
+  </div>
 </header>
 
 <main class="max-w-[1120px] mx-auto px-5 pt-8 sm:pt-14 pb-20">
@@ -91,11 +109,18 @@ select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
           <div class="sm:col-span-2"><label for="nom" class="block text-sm font-semibold mb-2">Nom et prénoms</label>
             <input id="nom" class="fld" type="text" autocomplete="name" placeholder="Ex. Awa Kouassi"><p class="err">Entrez votre nom et prénoms.</p></div>
           <div><label for="tel" class="block text-sm font-semibold mb-2">Numéro WhatsApp</label>
-            <input id="tel" class="fld" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. +229 01 00 00 00 00"><p class="err">Entrez un numéro valide, avec l’indicatif.</p></div>
+            <div class="telw">
+              <button type="button" id="cc" class="cc" aria-haspopup="listbox" aria-expanded="false" aria-controls="ccp"><img id="ccf" class="flag" alt="" width="24" height="18"><span id="ccd" class="font-semibold text-sm">+229</span><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg></button>
+              <input id="tel" class="fld" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="01 00 00 00 00">
+              <div id="ccp" class="ccl" hidden>
+                <input id="ccs" class="fld" style="height:44px" type="search" placeholder="Rechercher un pays ou un indicatif" aria-label="Rechercher un pays">
+                <ul id="ccu" role="listbox" aria-label="Pays"></ul>
+              </div>
+            </div><p class="err">Entrez un numéro valide (6 chiffres minimum).</p></div>
           <div><label for="mail" class="block text-sm font-semibold mb-2">E-mail <span class="font-normal text-[#A1A1AA]">(facultatif)</span></label>
             <input id="mail" class="fld" type="email" autocomplete="email" placeholder="vous@exemple.com"><p class="err">Cette adresse e-mail n’est pas valide.</p></div>
-          <div><label for="ville" class="block text-sm font-semibold mb-2">Ville et pays</label>
-            <input id="ville" class="fld" type="text" autocomplete="address-level2" placeholder="Ex. Porto-Novo, Bénin"><p class="err">Indiquez votre ville.</p></div>
+          <div><label for="ville" class="block text-sm font-semibold mb-2">Ville</label>
+            <input id="ville" class="fld" type="text" autocomplete="address-level2" placeholder="Ex. Porto-Novo"><p class="err">Indiquez votre ville.</p></div>
           <div><label for="niv" class="block text-sm font-semibold mb-2">Votre niveau actuel</label>
             <select id="niv" class="fld"><option>Débutant complet</option><option>J’ai quelques notions</option><option>Intermédiaire</option><option>Avancé</option></select></div>
           <div class="sm:col-span-2"><label for="msg" class="block text-sm font-semibold mb-2">Message <span class="font-normal text-[#A1A1AA]">(facultatif)</span></label>
@@ -142,38 +167,150 @@ select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns
 
 <script>
 var WA='2290157832677';
+var L='fr';
+try{var sv=localStorage.getItem('ja-lang');if(sv==='en'||sv==='fr')L=sv}catch(e){}
+try{var qp=new URLSearchParams(location.search).get('lang');if(qp==='en'||qp==='fr')L=qp}catch(e){}
+
 var F=[
- {t:'Architecture de base de données',d:'MCD, SQL, MySQL, PostgreSQL',p:14999,a:'#FFE600'},
- {t:'UI/UX Design',d:'Figma, design system, prototypes',p:12999,a:'#5B7BFF'},
- {t:'Développement web',d:'HTML, CSS, JavaScript, Tailwind, API',p:14999,a:'#4DFF1A'}];
+ {t:'Architecture de base de données',d:'MCD, SQL, MySQL, PostgreSQL',p:14999,a:'#FFE600',te:'Database Architecture',de:'Data modelling, SQL, MySQL, PostgreSQL'},
+ {t:'UI/UX Design',d:'Figma, design system, prototypes',p:12999,a:'#5B7BFF',te:'UI/UX Design',de:'Figma, design system, prototypes'},
+ {t:'Développement web',d:'HTML, CSS, JavaScript, Tailwind, API',p:14999,a:'#4DFF1A',te:'Web Development',de:'HTML, CSS, JavaScript, Tailwind, API'}];
 var $=function(s){return document.querySelector(s)};
-var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' fr'};
+var $$=function(s){return [].slice.call(document.querySelectorAll(s))};
+var norm=function(v){return v.replace(/\s+/g,' ').trim()};
+var fx=function(f){return L==='en'?{t:f.te,d:f.de,p:f.p,a:f.a}:f};
+var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,L==='en'?',':'.')+' fr'};
 var TK='<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#07070A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5l2.5 2.5L10 3"/></svg>';
-$('#opts').innerHTML=F.map(function(f,i){return '<label class="opt" style="--a:'+f.a+'"><input type="checkbox" name="fo" value="'+i+'"><span class="tick">'+TK+'</span><span class="flex-1"><span class="block f font-bold text-lg leading-snug">'+f.t+'</span><span class="block mt-1 text-sm text-[#A1A1AA]">'+f.d+'</span></span><span class="f font-extrabold whitespace-nowrap" style="color:'+f.a+'">'+fmt(f.p)+'</span></label>'}).join('');
-var boxes=[].slice.call(document.querySelectorAll('input[name=fo]'));
-// présélection via l’URL : inscription.html?f=0,2
-try{(new URLSearchParams(location.search).get('f')||'').split(',').forEach(function(v){if(boxes[+v])boxes[+v].checked=true})}catch(e){}
+
+/* ---------- textes statiques FR / EN ---------- */
+var EN={
+ "Retour au site":"Back to site",
+ "Junior Academy, retour à l’accueil":"Junior Academy, back to home",
+ "Nouvelle session dès le 5 décembre 2026":"New session starting 5 December 2026",
+ "Réservez votre place en deux minutes.":"Book your place in two minutes.",
+ "Choisissez vos formations, renseignez vos coordonnées : votre demande s’ouvre dans WhatsApp, prête à être envoyée. Nous vous répondons avec la durée, les horaires et le paiement.":"Choose your courses, fill in your details: your request opens in WhatsApp, ready to send. We reply with the duration, schedule and payment details.",
+ "Choisissez vos formations":"Choose your courses",
+ "Une seule, ou les trois pour un parcours complet.":"One course, or all three for a complete pathway.",
+ "Sélectionnez au moins une formation.":"Select at least one course.",
+ "Vos informations":"Your details",
+ "Nom et prénoms":"Full name",
+ "Ex. Awa Kouassi":"E.g. Awa Kouassi",
+ "Entrez votre nom et prénoms.":"Enter your full name.",
+ "Numéro WhatsApp":"WhatsApp number",
+ "Rechercher un pays ou un indicatif":"Search for a country or dialling code",
+ "Rechercher un pays":"Search for a country",
+ "Pays":"Countries",
+ "Entrez un numéro valide (6 chiffres minimum).":"Enter a valid number (at least 6 digits).",
+ "(facultatif)":"(optional)",
+ "Cette adresse e-mail n’est pas valide.":"This email address is not valid.",
+ "Ville":"City",
+ "Ex. Porto-Novo":"E.g. Porto-Novo",
+ "Indiquez votre ville.":"Enter your city.",
+ "Votre niveau actuel":"Your current level",
+ "Débutant complet":"Complete beginner",
+ "J’ai quelques notions":"I know a few basics",
+ "Intermédiaire":"Intermediate",
+ "Avancé":"Advanced",
+ "Une question, un besoin particulier ?":"A question, a specific need?",
+ "Envoyer ma demande sur WhatsApp":"Send my request on WhatsApp",
+ "Récapitulatif":"Summary",
+ "Début de la session":"Session start",
+ "décembre 2026":"December 2026",
+ "Votre sélection":"Your selection",
+ "Total indicatif":"Indicative total",
+ "Aucun paiement en ligne. Les modalités vous sont confirmées sur WhatsApp au +229 01 57 83 26 77.":"No online payment. Terms are confirmed with you on WhatsApp at +229 01 57 83 26 77.",
+ "Demande prête, il ne reste qu’à l’envoyer.":"Request ready, all that’s left is to send it.",
+ "WhatsApp s’est ouvert avec votre message. Appuyez sur « Envoyer » pour valider votre inscription. Si rien ne s’est ouvert, utilisez le bouton ci-dessous.":"WhatsApp has opened with your message. Tap “Send” to confirm your registration. If nothing opened, use the button below.",
+ "Ouvrir WhatsApp":"Open WhatsApp",
+ "Aucune formation choisie pour l’instant.":"No course selected yet.",
+ "Aucun pays trouvé.":"No country found."
+};
+var has=function(k){return Object.prototype.hasOwnProperty.call(EN,k)};
+var TT={fr:'Inscription – Junior Academy',en:'Registration – Junior Academy'};
+var MD={fr:'Inscrivez-vous à la nouvelle session Junior Academy : base de données, UI/UX design et développement web. Confirmation via WhatsApp.',en:'Register for the new Junior Academy session: databases, UI/UX design and web development. Confirmation via WhatsApp.'};
+
+var TXT=[],ATT=[];
+(function(){
+ var SKIP='#opts,#rec,#ccu,#tot,script,style';
+ var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,null),n;
+ while((n=w.nextNode())){var v=n.nodeValue;if(!v.trim())continue;var p=n.parentNode;if(p&&p.closest&&p.closest(SKIP))continue;var k=norm(v);if(has(k))TXT.push({n:n,fr:v,k:k})}
+ $$('[aria-label],[placeholder],[alt]').forEach(function(el){
+  if(el.parentElement&&el.parentElement.closest('#opts,#rec,#ccu,#tot'))return;
+  ['aria-label','placeholder','alt'].forEach(function(a){var v=el.getAttribute(a);if(v&&has(norm(v)))ATT.push({el:el,a:a,fr:v,k:norm(v)})})});
+})();
+function applyStatic(){var E=L==='en';
+ TXT.forEach(function(o){var m=o.fr.match(/^(\s*)[\s\S]*?(\s*)$/);o.n.nodeValue=E?m[1]+EN[o.k]+m[2]:o.fr});
+ ATT.forEach(function(o){o.el.setAttribute(o.a,E?EN[o.k]:o.fr)});
+}
+function applyMeta(){document.title=TT[L];var d=$('meta[name="description"]');if(d)d.setAttribute('content',MD[L])}
+
+/* ---------- formations ---------- */
+var boxes=[],pre=[];
+try{pre=(new URLSearchParams(location.search).get('f')||'').split(',')}catch(e){pre=[]}
 function sel(){return boxes.filter(function(b){return b.checked}).map(function(b){return F[+b.value]})}
 function recap(){var s=sel();
- $('#rec').innerHTML=s.length?s.map(function(f){return '<li class="pop flex justify-between gap-4"><span>'+f.t+'</span><span class="font-semibold whitespace-nowrap">'+fmt(f.p)+'</span></li>'}).join(''):'<li class="text-[#A1A1AA]">Aucune formation choisie pour l’instant.</li>';
+ $('#rec').innerHTML=s.length?s.map(function(f){var o=fx(f);return '<li class="pop flex justify-between gap-4"><span>'+o.t+'</span><span class="font-semibold whitespace-nowrap">'+fmt(o.p)+'</span></li>'}).join(''):'<li class="text-[#A1A1AA]">'+(L==='en'?'No course selected yet.':'Aucune formation choisie pour l’instant.')+'</li>';
  $('#tot').textContent=fmt(s.reduce(function(a,f){return a+f.p},0));
  if(s.length)$('#e-fo').style.display='none'}
-boxes.forEach(function(b){b.addEventListener('change',recap)});recap();
+function renderOpts(){var checked=boxes.map(function(b){return b.checked});
+ $('#opts').innerHTML=F.map(function(f,i){var o=fx(f);return '<label class="opt" style="--a:'+f.a+'"><input type="checkbox" name="fo" value="'+i+'"><span class="tick">'+TK+'</span><span class="flex-1"><span class="block f font-bold text-lg leading-snug">'+o.t+'</span><span class="block mt-1 text-sm text-[#A1A1AA]">'+o.d+'</span></span><span class="f font-extrabold whitespace-nowrap" style="color:'+f.a+'">'+fmt(o.p)+'</span></label>'}).join('');
+ boxes=[].slice.call(document.querySelectorAll('input[name=fo]'));
+ boxes.forEach(function(b,i){b.checked=checked.length?!!checked[i]:pre.indexOf(String(i))>-1;b.addEventListener('change',recap)});
+ recap()}
 
-var req=['nom','tel','ville'];
+/* ---------- pays, drapeau et indicatif ---------- */
+var C=[['BJ','Bénin','229','Benin'],['TG','Togo','228','Togo'],['CI','Côte d’Ivoire','225','Côte d’Ivoire'],['SN','Sénégal','221','Senegal'],['BF','Burkina Faso','226','Burkina Faso'],['ML','Mali','223','Mali'],['NE','Niger','227','Niger'],['NG','Nigeria','234','Nigeria'],['GH','Ghana','233','Ghana'],['CM','Cameroun','237','Cameroon'],['GA','Gabon','241','Gabon'],['CG','Congo','242','Congo'],['CD','RD Congo','243','DR Congo'],['GN','Guinée','224','Guinea'],['MR','Mauritanie','222','Mauritania'],['TD','Tchad','235','Chad'],['CF','Centrafrique','236','Central African Republic'],['BI','Burundi','257','Burundi'],['RW','Rwanda','250','Rwanda'],['MG','Madagascar','261','Madagascar'],['MA','Maroc','212','Morocco'],['DZ','Algérie','213','Algeria'],['TN','Tunisie','216','Tunisia'],['EG','Égypte','20','Egypt'],['ZA','Afrique du Sud','27','South Africa'],['KE','Kenya','254','Kenya'],['FR','France','33','France'],['BE','Belgique','32','Belgium'],['CH','Suisse','41','Switzerland'],['CA','Canada','1','Canada'],['US','États-Unis','1','United States'],['GB','Royaume-Uni','44','United Kingdom'],['DE','Allemagne','49','Germany'],['ES','Espagne','34','Spain'],['IT','Italie','39','Italy'],['PT','Portugal','351','Portugal'],['LU','Luxembourg','352','Luxembourg'],['HT','Haïti','509','Haiti'],['AE','Émirats arabes unis','971','United Arab Emirates'],['TR','Turquie','90','Turkey'],['CN','Chine','86','China'],['BR','Brésil','55','Brazil']];
+var cur=C[0],cn=function(c){return L==='en'?(c[3]||c[1]):c[1]},flag=function(c){return 'https://flagcdn.com/w40/'+c[0].toLowerCase()+'.png'};
+function setC(c){cur=c;$('#ccf').src=flag(c);$('#ccd').textContent='+'+c[2];
+ $('#cc').setAttribute('aria-label',L==='en'?'Country: '+cn(c)+', dialling code +'+c[2]:'Pays : '+c[1]+', indicatif +'+c[2])}
+function listC(q){q=(q||'').toLowerCase().trim().replace(/^\+/,'');
+ $('#ccu').innerHTML=C.map(function(c,i){return {c:c,i:i}}).filter(function(o){return !q||o.c[1].toLowerCase().indexOf(q)>-1||(o.c[3]||'').toLowerCase().indexOf(q)>-1||o.c[2].indexOf(q)===0||o.c[0].toLowerCase()===q})
+ .map(function(o){return '<li role="option" aria-selected="'+(o.c===cur)+'"><button type="button" data-i="'+o.i+'" class="w-full flex items-center gap-3 px-3 py-2.5 text-left rounded-xl hover:bg-white/10 focus-visible:bg-white/10"><img class="flag" src="'+flag(o.c)+'" loading="lazy" alt="" width="24" height="18"><span class="flex-1 text-sm">'+cn(o.c)+'</span><span class="text-sm text-[#A1A1AA]">+'+o.c[2]+'</span></button></li>'}).join('')||'<li class="px-3 py-3 text-sm text-[#A1A1AA]">'+(L==='en'?'No country found.':'Aucun pays trouvé.')+'</li>'}
+function openC(o){var p=$('#ccp');p.hidden=!o;$('#cc').setAttribute('aria-expanded',o);if(o){$('#ccs').value='';listC('');$('#ccs').focus()}}
+$('#cc').addEventListener('click',function(){openC($('#ccp').hidden)});
+$('#ccs').addEventListener('input',function(){listC(this.value)});
+$('#ccs').addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();var b=$('#ccu button');if(b)b.click()}});
+$('#ccu').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;setC(C[+b.dataset.i]);openC(false);$('#tel').focus()});
+document.addEventListener('click',function(e){if(!e.target.closest('.telw'))openC(false)});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('#ccp').hidden){openC(false);$('#cc').focus()}});
+// numéro collé ou saisi avec « + » : le pays et le drapeau suivent l’indicatif
+$('#tel').addEventListener('input',function(){var raw=this.value.trim();if(raw.charAt(0)!=='+'&&raw.slice(0,2)!=='00')return;
+ var d=raw.replace(/\D/g,'').replace(/^00/,'');
+ var m=C.slice().sort(function(a,b){return b[2].length-a[2].length}).filter(function(c){return d.indexOf(c[2])===0&&d.length>c[2].length})[0];
+ if(m){setC(m);this.value=d.slice(m[2].length)}});
+
+/* ---------- validation et envoi ---------- */
 function check(id,ok){var el=$('#'+id);el.classList.toggle('bad',!ok);return ok}
 ['nom','tel','ville','mail'].forEach(function(id){$('#'+id).addEventListener('input',function(){this.classList.remove('bad')})});
 $('#form').addEventListener('submit',function(e){e.preventDefault();
- var v={nom:$('#nom').value.trim(),tel:$('#tel').value.trim(),mail:$('#mail').value.trim(),ville:$('#ville').value.trim()},s=sel(),bad=null;
- var ok=[check('nom',v.nom.length>=3),check('tel',v.tel.replace(/\D/g,'').length>=8),check('ville',v.ville.length>=2),check('mail',!v.mail||/^\S+@\S+\.\S+$/.test(v.mail))];
+ var v={nom:$('#nom').value.trim(),tel:$('#tel').value.trim(),mail:$('#mail').value.trim(),ville:$('#ville').value.trim()},s=sel();
+ var ok=[check('nom',v.nom.length>=3),check('tel',v.tel.replace(/\D/g,'').length>=6),check('ville',v.ville.length>=2),check('mail',!v.mail||/^\S+@\S+\.\S+$/.test(v.mail))];
  $('#e-fo').style.display=s.length?'none':'block';
  var first=!s.length?$('#opts'):['nom','tel','ville','mail'].map(function(id,i){return ok[i]?null:$('#'+id)}).filter(Boolean)[0];
  if(!s.length||ok.indexOf(false)>-1){first.scrollIntoView({behavior:'smooth',block:'center'});if(first.focus&&first.id!=='opts')first.focus();return}
  var tot=s.reduce(function(a,f){return a+f.p},0),m=$('#msg').value.trim();
- var t='Bonjour Junior Academy, je m’appelle '+v.nom+'. Je souhaite m’inscrire à la session du 5 décembre 2026 :\n'+s.map(function(f){return '• '+f.t}).join('\n')+'\nTotal indicatif : '+fmt(tot)+'\nNiveau : '+$('#niv').value+'\nVille : '+v.ville+'\nWhatsApp : '+v.tel+(v.mail?'\nE-mail : '+v.mail:'')+(m?'\nMessage : '+m:'');
+ var t;
+ if(L==='en'){
+  t='Hello Junior Academy, my name is '+v.nom+'. I would like to register for the 5 December 2026 session:\n'+s.map(function(f){return '• '+fx(f).t}).join('\n')+'\nIndicative total: '+fmt(tot)+'\nLevel: '+$('#niv').value+'\nCity: '+v.ville+'\nCountry: '+cn(cur)+'\nWhatsApp: +'+cur[2]+' '+v.tel+(v.mail?'\nE-mail: '+v.mail:'')+(m?'\nMessage: '+m:'');
+ }else{
+  t='Bonjour Junior Academy, je m’appelle '+v.nom+'. Je souhaite m’inscrire à la session du 5 décembre 2026 :\n'+s.map(function(f){return '• '+f.t}).join('\n')+'\nTotal indicatif : '+fmt(tot)+'\nNiveau : '+$('#niv').value+'\nVille : '+v.ville+'\nPays : '+cur[1]+'\nWhatsApp : +'+cur[2]+' '+v.tel+(v.mail?'\nE-mail : '+v.mail:'')+(m?'\nMessage : '+m:'');
+ }
  var url='https://wa.me/'+WA+'?text='+encodeURIComponent(t);
  $('#again').href=url;var ok2=$('#ok');ok2.classList.remove('hidden');ok2.classList.add('pop');ok2.scrollIntoView({behavior:'smooth',block:'center'});ok2.focus({preventScroll:true});
  window.open(url,'_blank','noopener')});
+
+/* ---------- langue ---------- */
+function applyAll(){
+ document.documentElement.lang=L;
+ applyStatic();applyMeta();
+ setC(cur);
+ renderOpts();
+ if(!$('#ccp').hidden)listC($('#ccs').value);
+ $$('#lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.l===L)});
+}
+$$('#lang button').forEach(function(b){b.addEventListener('click',function(){
+ if(b.dataset.l===L)return;L=b.dataset.l;try{localStorage.setItem('ja-lang',L)}catch(e){}applyAll()})});
+applyAll();
 </script>
 </body>
 </html>
