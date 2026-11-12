@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inscription – Junior Academy</title>
+<meta name="description" content="Inscrivez-vous à la nouvelle session Junior Academy : base de données, UI/UX design et développement web. Confirmation via WhatsApp.">
+<meta name="theme-color" content="#07070A">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Crect width=%2264%22 height=%2264%22 rx=%2214%22 fill=%22%23FFE600%22/%3E%3Cpath d=%22M32 10l14 18H18zM18 32h28L32 46z%22 fill=%22%2307070A%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{ja:{black:'#07070A',s1:'#0F0F13',s2:'#16161C',yellow:'#FFE600',blue:'#0A3CFF',green:'#4DFF1A',pink:'#FF1A8C'}},fontFamily:{sans:['Inter','system-ui','Arial','sans-serif'],display:['Poppins','system-ui','Arial','sans-serif']}}}}
+</script>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--e:cubic-bezier(.16,1,.3,1)}
+html{scroll-behavior:smooth;scroll-padding-top:1rem}
+body{background:#07070A;color:#F5F5F7;font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.f{font-family:Poppins,system-ui,sans-serif;letter-spacing:-.03em}
+::selection{background:#FFE600;color:#07070A}
+:focus-visible{outline:2px solid #FFE600;outline-offset:3px;border-radius:8px}
+.strip{height:22px;background-color:#FFE600;background-size:110px 22px;background-repeat:repeat-x;animation:slide 40s linear infinite;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='72' viewBox='0 0 360 72'%3E%3Crect width='360' height='72' fill='%23FFE600'/%3E%3Cpath d='M0 72V0l72 72z' fill='%230A3CFF'/%3E%3Crect x='72' width='72' height='72' fill='%230A3CFF'/%3E%3Cpath d='M108 12l24 24-24 24-24-24z' fill='%23FF1A8C'/%3E%3Crect x='144' width='72' height='72' fill='%23FF1A8C'/%3E%3Cpath d='M180 12l24 24-24 24-24-24z' fill='%23FFE600'/%3E%3Cpath d='M216 72V0a72 72 0 0 1 72 72z' fill='%234DFF1A'/%3E%3Crect x='288' width='36' height='72' fill='%230A3CFF'/%3E%3Crect x='324' width='36' height='72' fill='%23FFE600'/%3E%3C/svg%3E")}
+@keyframes slide{to{background-position-x:-220px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;border-radius:999px;font-weight:600;transition:transform .35s var(--e),box-shadow .35s var(--e),background-color .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
+.bp{background:#FFE600;color:#07070A}.bp:hover{box-shadow:0 10px 30px -6px rgba(255,230,0,.45)}
+.fld{width:100%;height:52px;border-radius:14px;background:#0B0B0F;border:1px solid rgba(255,255,255,.14);padding:0 16px;color:#fff;transition:border-color .25s,box-shadow .25s}
+textarea.fld{height:auto;padding:14px 16px}
+.fld:hover{border-color:rgba(255,255,255,.3)}
+.fld:focus{outline:none;border-color:#FFE600;box-shadow:0 0 0 4px rgba(255,230,0,.15)}
+.fld.bad{border-color:#FF1A8C;box-shadow:0 0 0 4px rgba(255,26,140,.15)}
+select.fld{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 6l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.err{display:none;margin-top:.5rem;font-size:.875rem;font-weight:500;color:#FF5CAA}
+.bad+.err{display:block}
+/* cartes de formation */
+.opt{position:relative;display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:20px;border:1px solid rgba(255,255,255,.12);background:#0F0F13;cursor:pointer;transition:border-color .3s,background-color .3s,transform .4s var(--e)}
+.opt:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.3)}
+.opt input{position:absolute;opacity:0;pointer-events:none}
+.opt .tick{width:26px;height:26px;border-radius:8px;border:2px solid rgba(255,255,255,.3);display:grid;place-items:center;flex:none;margin-top:2px;transition:background-color .25s,border-color .25s}
+.opt .tick svg{opacity:0;transform:scale(.5);transition:opacity .2s,transform .35s var(--e)}
+.opt:has(input:checked){border-color:var(--a);background:color-mix(in srgb,var(--a) 9%,#0F0F13)}
+.opt:has(input:checked) .tick{background:var(--a);border-color:var(--a)}
+.opt:has(input:checked) .tick svg{opacity:1;transform:none}
+.opt:has(input:focus-visible){outline:2px solid #FFE600;outline-offset:3px}
+/* ticket récapitulatif */
+.ticket{position:relative;background:#0F0F13;border:1px solid rgba(255,255,255,.1);border-radius:28px}
+.stub{border-top:2px dashed rgba(7,7,10,.45);border-radius:0 0 27px 27px}
+.nt{position:absolute;width:28px;height:28px;border-radius:50%;background:#07070A;top:-15px}
+.n1{left:-14px}.n2{right:-14px}
+.pop{animation:pop .5s var(--e)}
+@keyframes pop{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.in1{animation:pop .9s var(--e) both}.in2{animation:pop .9s var(--e) .12s both}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="strip" aria-hidden="true"></div>
+
+<header class="max-w-[1120px] mx-auto px-5 pt-5 flex items-center justify-between">
+  <a href="index.html" class="flex items-center gap-3" aria-label="Junior Academy, retour à l’accueil">
+    <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2l14 18H6z" fill="#fff"/><path d="M6 24h28L20 38z" fill="#fff"/><path d="M14 20l6-6 6 6-6 6z" fill="#07070A"/></svg>
+    <span class="f font-bold leading-[1.05] text-[16px]">Junior<br>Academy</span>
+  </a>
+  <a href="index.html" class="text-sm font-medium text-[#C9C9D1] hover:text-white transition-colors inline-flex items-center gap-2">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Retour au site</a>
+</header>
+
+<main class="max-w-[1120px] mx-auto px-5 pt-8 sm:pt-14 pb-20">
+  <div class="in1 max-w-2xl">
+    <p class="inline-flex items-center gap-2 rounded-full bg-ja-yellow text-black px-3.5 py-1.5 text-sm font-semibold">Nouvelle session dès le 5 décembre 2026</p>
+    <h1 class="mt-5 font-extrabold leading-[1.05] text-[clamp(2rem,6vw,3.8rem)]">Réservez votre place en deux minutes.</h1>
+    <p class="mt-4 text-base sm:text-lg text-[#A1A1AA]">Choisissez vos formations, renseignez vos coordonnées : votre demande s’ouvre dans WhatsApp, prête à être envoyée. Nous vous répondons avec la durée, les horaires et le paiement.</p>
+  </div>
+
+  <div class="in2 mt-10 grid lg:grid-cols-[1.35fr_1fr] gap-8 lg:gap-10 items-start">
+    <form id="form" novalidate class="space-y-10">
+      <fieldset>
+        <legend class="f font-extrabold text-xl sm:text-2xl flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-ja-yellow text-black grid place-items-center text-base">1</span>Choisissez vos formations</legend>
+        <p class="mt-2 text-sm text-[#A1A1AA]">Une seule, ou les trois pour un parcours complet.</p>
+        <div id="opts" class="mt-5 grid gap-3"></div>
+        <p id="e-fo" class="err">Sélectionnez au moins une formation.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend class="f font-extrabold text-xl sm:text-2xl flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-ja-yellow text-black grid place-items-center text-base">2</span>Vos informations</legend>
+        <div class="mt-5 grid sm:grid-cols-2 gap-4">
+          <div class="sm:col-span-2"><label for="nom" class="block text-sm font-semibold mb-2">Nom et prénoms</label>
+            <input id="nom" class="fld" type="text" autocomplete="name" placeholder="Ex. Awa Kouassi"><p class="err">Entrez votre nom et prénoms.</p></div>
+          <div><label for="tel" class="block text-sm font-semibold mb-2">Numéro WhatsApp</label>
+            <input id="tel" class="fld" type="tel" inputmode="tel" autocomplete="tel" placeholder="Ex. +229 01 00 00 00 00"><p class="err">Entrez un numéro valide, avec l’indicatif.</p></div>
+          <div><label for="mail" class="block text-sm font-semibold mb-2">E-mail <span class="font-normal text-[#A1A1AA]">(facultatif)</span></label>
+            <input id="mail" class="fld" type="email" autocomplete="email" placeholder="vous@exemple.com"><p class="err">Cette adresse e-mail n’est pas valide.</p></div>
+          <div><label for="ville" class="block text-sm font-semibold mb-2">Ville et pays</label>
+            <input id="ville" class="fld" type="text" autocomplete="address-level2" placeholder="Ex. Porto-Novo, Bénin"><p class="err">Indiquez votre ville.</p></div>
+          <div><label for="niv" class="block text-sm font-semibold mb-2">Votre niveau actuel</label>
+            <select id="niv" class="fld"><option>Débutant complet</option><option>J’ai quelques notions</option><option>Intermédiaire</option><option>Avancé</option></select></div>
+          <div class="sm:col-span-2"><label for="msg" class="block text-sm font-semibold mb-2">Message <span class="font-normal text-[#A1A1AA]">(facultatif)</span></label>
+            <textarea id="msg" rows="3" class="fld" placeholder="Une question, un besoin particulier ?"></textarea></div>
+        </div>
+      </fieldset>
+
+      <button type="submit" class="btn bp h-14 w-full text-base lg:hidden">Envoyer ma demande sur WhatsApp</button>
+    </form>
+
+    <aside class="lg:sticky lg:top-6" aria-label="Récapitulatif">
+      <div class="ticket">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center gap-3">
+            <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 2l14 18H6z" fill="#fff"/><path d="M6 24h28L20 38z" fill="#fff"/><path d="M14 20l6-6 6 6-6 6z" fill="#0F0F13"/></svg>
+            <span class="f font-bold leading-[1.05]">Junior<br>Academy</span>
+          </div>
+          <p class="mt-6 text-sm text-[#A1A1AA]">Début de la session</p>
+          <p class="f font-extrabold text-3xl leading-tight"><span class="text-ja-yellow">5</span> décembre 2026</p>
+          <h2 class="mt-6 text-sm text-[#A1A1AA] font-semibold" style="letter-spacing:0">Votre sélection</h2>
+          <ul id="rec" class="mt-3 space-y-2.5 text-[15px]" aria-live="polite"></ul>
+        </div>
+        <div class="stub relative bg-ja-yellow text-black p-6 sm:p-8">
+          <i class="nt n1"></i><i class="nt n2"></i>
+          <div class="flex items-end justify-between gap-4">
+            <span class="font-semibold">Total indicatif</span>
+            <span id="tot" class="f font-extrabold text-3xl leading-none">0 fr</span>
+          </div>
+          <button type="submit" form="form" class="btn h-14 mt-5 w-full bg-black text-white hover:bg-ja-blue hidden lg:inline-flex">Envoyer ma demande sur WhatsApp</button>
+          <p class="mt-4 text-[13px] leading-snug text-black/75">Aucun paiement en ligne. Les modalités vous sont confirmées sur WhatsApp au +229 01 57 83 26 77.</p>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section id="ok" class="hidden mt-10 rounded-[28px] border border-ja-green/40 bg-ja-green/10 p-6 sm:p-10" role="status" tabindex="-1">
+    <h2 class="f font-extrabold text-2xl sm:text-3xl">Demande prête, il ne reste qu’à l’envoyer.</h2>
+    <p class="mt-3 text-[#C9C9D1] max-w-xl">WhatsApp s’est ouvert avec votre message. Appuyez sur « Envoyer » pour valider votre inscription. Si rien ne s’est ouvert, utilisez le bouton ci-dessous.</p>
+    <a id="again" href="#" target="_blank" rel="noopener" class="btn bp h-12 px-7 mt-6">Ouvrir WhatsApp</a>
+  </section>
+</main>
+
+<div class="strip" aria-hidden="true"></div>
+
+<script>
+var WA='2290157832677';
+var F=[
+ {t:'Architecture de base de données',d:'MCD, SQL, MySQL, PostgreSQL',p:14999,a:'#FFE600'},
+ {t:'UI/UX Design',d:'Figma, design system, prototypes',p:12999,a:'#5B7BFF'},
+ {t:'Développement web',d:'HTML, CSS, JavaScript, Tailwind, API',p:14999,a:'#4DFF1A'}];
+var $=function(s){return document.querySelector(s)};
+var fmt=function(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+' fr'};
+var TK='<svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="#07070A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6.5l2.5 2.5L10 3"/></svg>';
+$('#opts').innerHTML=F.map(function(f,i){return '<label class="opt" style="--a:'+f.a+'"><input type="checkbox" name="fo" value="'+i+'"><span class="tick">'+TK+'</span><span class="flex-1"><span class="block f font-bold text-lg leading-snug">'+f.t+'</span><span class="block mt-1 text-sm text-[#A1A1AA]">'+f.d+'</span></span><span class="f font-extrabold whitespace-nowrap" style="color:'+f.a+'">'+fmt(f.p)+'</span></label>'}).join('');
+var boxes=[].slice.call(document.querySelectorAll('input[name=fo]'));
+// présélection via l’URL : inscription.html?f=0,2
+try{(new URLSearchParams(location.search).get('f')||'').split(',').forEach(function(v){if(boxes[+v])boxes[+v].checked=true})}catch(e){}
+function sel(){return boxes.filter(function(b){return b.checked}).map(function(b){return F[+b.value]})}
+function recap(){var s=sel();
+ $('#rec').innerHTML=s.length?s.map(function(f){return '<li class="pop flex justify-between gap-4"><span>'+f.t+'</span><span class="font-semibold whitespace-nowrap">'+fmt(f.p)+'</span></li>'}).join(''):'<li class="text-[#A1A1AA]">Aucune formation choisie pour l’instant.</li>';
+ $('#tot').textContent=fmt(s.reduce(function(a,f){return a+f.p},0));
+ if(s.length)$('#e-fo').style.display='none'}
+boxes.forEach(function(b){b.addEventListener('change',recap)});recap();
+
+var req=['nom','tel','ville'];
+function check(id,ok){var el=$('#'+id);el.classList.toggle('bad',!ok);return ok}
+['nom','tel','ville','mail'].forEach(function(id){$('#'+id).addEventListener('input',function(){this.classList.remove('bad')})});
+$('#form').addEventListener('submit',function(e){e.preventDefault();
+ var v={nom:$('#nom').value.trim(),tel:$('#tel').value.trim(),mail:$('#mail').value.trim(),ville:$('#ville').value.trim()},s=sel(),bad=null;
+ var ok=[check('nom',v.nom.length>=3),check('tel',v.tel.replace(/\D/g,'').length>=8),check('ville',v.ville.length>=2),check('mail',!v.mail||/^\S+@\S+\.\S+$/.test(v.mail))];
+ $('#e-fo').style.display=s.length?'none':'block';
+ var first=!s.length?$('#opts'):['nom','tel','ville','mail'].map(function(id,i){return ok[i]?null:$('#'+id)}).filter(Boolean)[0];
+ if(!s.length||ok.indexOf(false)>-1){first.scrollIntoView({behavior:'smooth',block:'center'});if(first.focus&&first.id!=='opts')first.focus();return}
+ var tot=s.reduce(function(a,f){return a+f.p},0),m=$('#msg').value.trim();
+ var t='Bonjour Junior Academy, je m’appelle '+v.nom+'. Je souhaite m’inscrire à la session du 5 décembre 2026 :\n'+s.map(function(f){return '• '+f.t}).join('\n')+'\nTotal indicatif : '+fmt(tot)+'\nNiveau : '+$('#niv').value+'\nVille : '+v.ville+'\nWhatsApp : '+v.tel+(v.mail?'\nE-mail : '+v.mail:'')+(m?'\nMessage : '+m:'');
+ var url='https://wa.me/'+WA+'?text='+encodeURIComponent(t);
+ $('#again').href=url;var ok2=$('#ok');ok2.classList.remove('hidden');ok2.classList.add('pop');ok2.scrollIntoView({behavior:'smooth',block:'center'});ok2.focus({preventScroll:true});
+ window.open(url,'_blank','noopener')});
+</script>
+</body>
+</html>
